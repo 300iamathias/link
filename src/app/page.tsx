@@ -40,7 +40,7 @@ const socialLinks = [
   },
   {
     name: "Instagram",
-    url: "https://www.instagram.com/sistemas_tecnologia_guayaquil",
+    url: "https://www.instagram.com/jimbra_tech",
     icon: Instagram,
     color: "from-[#f09433] via-[#e6683c] to-[#bc1888]",
     hoverColor: "hover:shadow-pink-500/30",
@@ -56,7 +56,7 @@ const socialLinks = [
   },
   {
     name: "Facebook",
-    url: "https://www.facebook.com/jimbraPC",
+    url: "https://www.facebook.com/JimbraTech/",
     icon: Facebook,
     color: "from-[#1877f2] to-[#0d5bbd]",
     hoverColor: "hover:shadow-blue-500/30",
@@ -73,13 +73,13 @@ const socialIcons = [
   },
   {
     icon: Instagram,
-    url: "https://www.instagram.com/sistemas_tecnologia_guayaquil",
+    url: "https://www.instagram.com/jimbra_tech",
     label: "Instagram",
   },
   { icon: Twitter, url: "https://twitter.com/jimbra_2", label: "X" },
   {
     icon: Facebook,
-    url: "https://www.facebook.com/jimbraPC",
+    url: "https://www.facebook.com/JimbraTech/",
     label: "Facebook",
   },
 ];
