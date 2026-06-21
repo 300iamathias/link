@@ -32,14 +32,23 @@ export const metadata: Metadata = {
     description:
       "Páginas que venden. Sistemas que trabajan solos. IA que atiende 24/7. Todo lo que necesitas para dejar de llevar tu negocio a mano.",
     type: "website",
-    images: ["/jimbra-logo.png"],
+    url: "https://link.jimbra.net",
+    siteName: "JIMBRA",
+    images: [
+      {
+        url: "https://link.jimbra.net/jimbra-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "JIMBRA - Todo lo que necesitas",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "JIMBRA | Todo lo que necesitas",
     description:
       "Páginas que venden. Sistemas que trabajan solos. IA que atiende 24/7. Todo lo que necesitas para dejar de llevar tu negocio a mano.",
-    images: ["/jimbra-logo.png"],
+    images: ["https://link.jimbra.net/jimbra-logo.png"],
   },
 };
 

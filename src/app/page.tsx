@@ -285,10 +285,10 @@ export default function Home() {
               navigator.share({
                 title: "JIMBRA - Todo lo que necesitas",
                 text: "Páginas que venden. Sistemas que trabajan solos. IA que atiende 24/7.",
-                url: "https://link-seven-ochre.vercel.app/",
+                url: "https://link.jimbra.net",
               });
             } else {
-              navigator.clipboard.writeText("https://link-seven-ochre.vercel.app/");
+              navigator.clipboard.writeText("https://link.jimbra.net");
             }
           }}
         >
