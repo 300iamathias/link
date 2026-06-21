@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "JIMBRA | Todo lo que necesitas",
   description:
-    "Somos una empresa de Tecnología, brindamos servicios para la comunidad.",
+    "Páginas que venden. Sistemas que trabajan solos. IA que atiende 24/7. Todo lo que necesitas para dejar de llevar tu negocio a mano.",
   keywords: [
     "Jimbra",
     "Tecnología",
@@ -30,14 +30,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "JIMBRA | Todo lo que necesitas",
     description:
-      "Somos una empresa de Tecnología, brindamos servicios para la comunidad.",
+      "Páginas que venden. Sistemas que trabajan solos. IA que atiende 24/7. Todo lo que necesitas para dejar de llevar tu negocio a mano.",
     type: "website",
+    images: ["/jimbra-logo.png"],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "JIMBRA | Todo lo que necesitas",
     description:
-      "Somos una empresa de Tecnología, brindamos servicios para la comunidad.",
+      "Páginas que venden. Sistemas que trabajan solos. IA que atiende 24/7. Todo lo que necesitas para dejar de llevar tu negocio a mano.",
+    images: ["/jimbra-logo.png"],
   },
 };
 
