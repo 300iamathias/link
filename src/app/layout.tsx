@@ -26,7 +26,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Jimbra" }],
   icons: {
     icon: "/jimbra-logo.png",
+    apple: "/jimbra-logo.png",
   },
+  manifest: "/manifest.json",
   openGraph: {
     title: "JIMBRA | Todo lo que necesitas",
     description:
