@@ -11,7 +11,7 @@ import {
   Share2,
   ChevronRight,
 } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 
 const socialLinks = [
   {
@@ -88,56 +88,40 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.2 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 100, damping: 15 },
-  },
-};
-
-const textVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 15 },
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+};
+
+const textVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
 export default function Home() {
-  const [hoveredLink, setHoveredLink] = useState<number | null>(null);
-
   const handleLinkClick = useCallback((url: string) => {
     window.open(url, "_blank", "noopener,noreferrer");
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
-        <motion.div
-          className="absolute top-1/4 -left-20 w-72 h-72 rounded-full bg-emerald-500/10 blur-3xl"
-          animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 -right-20 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl"
-          animate={{ x: [0, -40, 0], y: [0, 30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-2/3 left-1/3 w-60 h-60 rounded-full bg-amber-500/8 blur-3xl"
-          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
+    <div className="min-h-screen flex flex-col relative">
+      {/* Animated Background - CSS only, no JS overhead */}
+      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+        <div className="blob blob-1" />
+        <div className="blob blob-2" />
+        <div className="blob blob-3" />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -206,19 +190,15 @@ export default function Home() {
           initial="hidden"
           animate="visible"
         >
-          {socialLinks.map((link, index) => (
+          {socialLinks.map((link) => (
             <motion.button
               key={link.name}
               variants={itemVariants}
               onClick={() => handleLinkClick(link.url)}
-              onMouseEnter={() => setHoveredLink(index)}
-              onMouseLeave={() => setHoveredLink(null)}
-              className={`group relative w-full flex items-center gap-4 px-5 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md text-left transition-all duration-300 hover:border-white/20 hover:bg-white/10 ${link.hoverColor} hover:shadow-lg cursor-pointer`}
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
+              className={`group relative w-full flex items-center gap-4 px-5 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md text-left transition-all duration-200 hover:border-white/20 hover:bg-white/10 ${link.hoverColor} hover:shadow-lg cursor-pointer active:scale-[0.98]`}
             >
-              <motion.div
-                className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${link.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+              <div
+                className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${link.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200`}
               />
               <div
                 className={`relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br ${link.color} shrink-0 shadow-lg`}
@@ -233,15 +213,7 @@ export default function Home() {
                   {link.description}
                 </p>
               </div>
-              <motion.div
-                animate={{
-                  x: hoveredLink === index ? 4 : 0,
-                  opacity: hoveredLink === index ? 1 : 0.5,
-                }}
-                transition={{ duration: 0.2 }}
-              >
-                <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
-              </motion.div>
+              <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
             </motion.button>
           ))}
         </motion.div>
@@ -249,9 +221,9 @@ export default function Home() {
         {/* Social Icons Row */}
         <motion.div
           className="flex items-center justify-center gap-4 mt-8"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
+          transition={{ delay: 0.8, duration: 0.4 }}
         >
           {socialIcons.map((social, i) => (
             <motion.a
@@ -259,12 +231,10 @@ export default function Home() {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-              whileHover={{ scale: 1.15, y: -3 }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, scale: 0 }}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200 hover:scale-110 active:scale-90"
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.3 + i * 0.08, type: "spring" }}
+              transition={{ delay: 0.9 + i * 0.06, duration: 0.3 }}
               aria-label={social.label}
             >
               <social.icon className="w-4 h-4" />
@@ -274,12 +244,10 @@ export default function Home() {
 
         {/* Share button */}
         <motion.button
-          className="mt-6 flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer"
+          className="mt-6 flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer active:scale-95"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          transition={{ delay: 1.1 }}
           onClick={() => {
             if (navigator.share) {
               navigator.share({
@@ -303,11 +271,10 @@ export default function Home() {
           href="https://www.jimbra.net"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-slate-500 text-xs flex items-center justify-center gap-1 hover:text-emerald-400 transition-colors duration-300 cursor-pointer"
+          className="text-slate-500 text-xs flex items-center justify-center gap-1 hover:text-emerald-400 transition-colors duration-200 cursor-pointer"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.6 }}
-          whileHover={{ scale: 1.05 }}
+          transition={{ delay: 1.2 }}
         >
           Desarrollado por{" "}
           <span className="text-emerald-400 font-semibold">Jimbra</span>
@@ -316,7 +283,7 @@ export default function Home() {
           className="text-slate-600 text-[10px] mt-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.7 }}
+          transition={{ delay: 1.3 }}
         >
           © {new Date().getFullYear()} Jimbra
         </motion.p>
